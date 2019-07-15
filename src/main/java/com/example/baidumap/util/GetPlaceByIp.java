@@ -45,7 +45,7 @@ public class GetPlaceByIp {
     public static void main(String[] args) throws IOException, JSONException{
         //这里调用百度的ip定位api服务 详见     http://api.map.baidu.com/lbsapi/cloud/ip-location-api.htm
         //差本地有点问题
-        JSONObject json = readJsonFromUrl("http://api.map.baidu.com/location/ip?ip=14.108.157.25&ak=HgiEfvBOOuFPAzAM94UZmx0IAtHABP9c");
+        JSONObject json = readJsonFromUrl("http://api.map.baidu.com/location/ip?ip=223.104.25.81&ak=HgiEfvBOOuFPAzAM94UZmx0IAtHABP9c");
         System.out.println(json.toString());
         System.out.println(((JSONObject) json.get("content")).get("address"));
     }

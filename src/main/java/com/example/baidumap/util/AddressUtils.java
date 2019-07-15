@@ -1,5 +1,6 @@
 package com.example.baidumap.util;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -36,7 +37,7 @@ public class AddressUtils {
         String returnStr = this.getResult(urlStr, content, encodingString);
         if (returnStr != null) {
             // 处理返回的省市区信息
-            System.out.println(returnStr);
+            //System.out.println(returnStr);
             String[] temp = returnStr.split(",");
             if(temp.length<3){
                 //无效IP，局域网测试
@@ -82,14 +83,20 @@ public class AddressUtils {
                         // ISP公司
                         isp = decodeUnicode(isp);
                         break;
-                        //默认的
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + i);
+
                 }
             }
 
-            System.out.println(country+"="+area+"="+region+"="+city+"="+county+"="+isp);
-            return region;
+            // 返回个json格式(最好处理一下空值value)
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("country",country);
+            jsonObject.put("area",area);
+            jsonObject.put("region",region);
+            jsonObject.put("city",city);
+            jsonObject.put("isp",isp);
+
+
+            return jsonObject.toString();
         }
         return null;
     }

@@ -39,6 +39,11 @@
             <artifactId>android-json</artifactId>
             <version>0.0.20131108.vaadin1</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.54</version>
+        </dependency>
     </dependencies>
 
     <build>
