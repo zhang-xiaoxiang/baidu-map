@@ -74,12 +74,17 @@ public class AddressUtils {
                         break;
                     case 9:
                         county = (temp[i].split(":"))[1].replaceAll("\"", "");
-                        county = decodeUnicode(county);// 地区
+                        // 地区
+                        county = decodeUnicode(county);
                         break;
                     case 11:
                         isp = (temp[i].split(":"))[1].replaceAll("\"", "");
-                        isp = decodeUnicode(isp); // ISP公司
+                        // ISP公司
+                        isp = decodeUnicode(isp);
                         break;
+                        //默认的
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + i);
                 }
             }
 
@@ -102,21 +107,33 @@ public class AddressUtils {
         HttpURLConnection connection = null;
         try {
             url = new URL(urlStr);
-            connection = (HttpURLConnection) url.openConnection();// 新建连接实例
-            connection.setConnectTimeout(2000);// 设置连接超时时间，单位毫秒
-            connection.setReadTimeout(2000);// 设置读取数据超时时间，单位毫秒
-            connection.setDoOutput(true);// 是否打开输出流 true|false
-            connection.setDoInput(true);// 是否打开输入流true|false
-            connection.setRequestMethod("POST");// 提交方法POST|GET
-            connection.setUseCaches(false);// 是否缓存true|false
-            connection.connect();// 打开连接端口
+            // 新建连接实例
+            connection = (HttpURLConnection) url.openConnection();
+            // 设置连接超时时间，单位毫秒
+            connection.setConnectTimeout(2000);
+            // 设置读取数据超时时间，单位毫秒
+            connection.setReadTimeout(2000);
+            // 是否打开输出流 true|false
+            connection.setDoOutput(true);
+            // 是否打开输入流true|false
+            connection.setDoInput(true);
+            // 提交方法POST|GET
+            connection.setRequestMethod("POST");
+            // 是否缓存true|false
+            connection.setUseCaches(false);
+            // 打开连接端口
+            connection.connect();
+            // 打开输出流往对端服务器写数据  // 写数据,也就是提交你的表单 name=xxx&pwd=xxx
             DataOutputStream out = new DataOutputStream(connection
-                    .getOutputStream());// 打开输出流往对端服务器写数据
-            out.writeBytes(content);// 写数据,也就是提交你的表单 name=xxx&pwd=xxx
-            out.flush();// 刷新
-            out.close();// 关闭输出流
+                    .getOutputStream());
+            out.writeBytes(content);
+            // 刷新
+            out.flush();
+            // 关闭输出流
+            out.close();
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream(), encoding));// 往对端写完数据对端服务器返回数据
+                    // 往对端写完数据对端服务器返回数据
+                    connection.getInputStream(), encoding));
             // ,以BufferedReader流来读取
             StringBuffer buffer = new StringBuffer();
             String line = "";
