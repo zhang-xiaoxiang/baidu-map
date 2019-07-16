@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * AddressUtils:地址工具类
+ * AddressUtils:IP地址工具类
  *
  * @author zhangxiaoxiang
  * @date: 2019/07/15

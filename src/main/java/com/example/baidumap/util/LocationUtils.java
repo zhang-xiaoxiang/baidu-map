@@ -1,5 +1,8 @@
 package com.example.baidumap.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * LocationUtils:根据经纬度计算两点之间的距离
  *
@@ -68,10 +71,24 @@ public class LocationUtils {
         return distanceKm;
     }
 
+    /**
+     * 测试一下
+     * @param args
+     */
     public static void main(String[] args) {
         double distance = getDistanceKm(29.57, 106.55,
                 31.22, 107.50);
-        System.out.println("距离" + distance + "公里");
+        double distance2 = getDistanceKm(29.57, 106.55,
+                31.22, 106.50);
+        //假如上面两条来自数据库
+        List<Double> list=new ArrayList<>();
+        list.add(distance);
+        list.add(distance2);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i)<200){
+                System.out.println("选取成功<200公里内的距离!"+list.get(i));
+            }
+        }
     }
 
 }
