@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 /**
- * IPController:测试IP真是地址
+ * IPController:测试IP真实的地址
  *
  * @author zhangxiaoxiang
  * @date: 2019/07/15
